@@ -23,16 +23,17 @@ final class ViewController: UIViewController {
     @IBOutlet var blueSlider: UISlider!
     
     @IBOutlet var colorView: UIView!
-    var setColor = UIColor.self
+    var setColor: UIColor!
     
+//    MARK: - Loading Screen
     override func viewDidLoad() {
         super.viewDidLoad()
         
         colorView.layer.cornerRadius = colorView.frame.width / 10
-        
+        colorView.backgroundColor = .white
         defaultValueText()
-        getColor()
         sliderValue()
+        getColor()
     }
     
 //    MARK: - Slider Position
@@ -46,17 +47,18 @@ final class ViewController: UIViewController {
             blueValue.text = roundValue(sender.value)
         }
         defaultValueText()
+        getColor()
     }
     
     // MARK: - Slider value
     private func sliderValue() {
-        let sliderValue = CIColor(color: setColor.self)
+        let sliderValue = CIColor(color: setColor ?? .white)
         
         redSlider.value = Float(sliderValue.red)
         greenSlider.value = Float(sliderValue.green)
         blueSlider.value = Float(sliderValue.blue)
         
-        colorView.backgroundColor = setColor.self
+        colorView.backgroundColor = setColor
     }
     
     //    MARK: - Get Color
@@ -71,13 +73,14 @@ final class ViewController: UIViewController {
     }
     // MARK: - Default Value for text Label
     private func defaultValueText() {
-        redLabel.text = roundValue(redSlider.value)
-        greenLabel.text = roundValue(greenSlider.value)
-        blueLabel.text = roundValue(blueSlider.value)
+        redValue.text = roundValue(redSlider.value)
+        greenValue.text = roundValue(greenSlider.value)
+        blueValue.text = roundValue(blueSlider.value)
+        
     }
     
     private func roundValue(_ value: Float) -> String {
-        String(format: "%.2f")
+        String(format: "%.2f", value)
     }
     
     
