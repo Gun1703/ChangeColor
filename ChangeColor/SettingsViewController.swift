@@ -44,7 +44,6 @@ final class SettingsViewController: UIViewController {
             )
         
         defaultValueText()
-       
     }
     
 //    MARK: - Slider Position
@@ -95,11 +94,10 @@ final class SettingsViewController: UIViewController {
         
         blueValue.text = roundValue(blueSlider.value)
         blueTextField.text = roundValue(blueSlider.value)
-        
     }
     
-    @IBAction func doneButtonPressed(_ sender: Any) {
-        delegate.saveSettings(color: colorView.backgroundColor ?? .white)
+    @IBAction func doneButtonPressed() {
+        delegate.saveSettings(setColor ?? .white)
         dismiss(animated: true)
     }
     

@@ -8,16 +8,10 @@
 import UIKit
 
 protocol SettingsViewControllerDelegate: AnyObject {
-    func saveSettings(color: UIColor)
+    func saveSettings(_ color: UIColor)
 }
 
-class MainViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-      
-    }
+final class MainViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let navigationVC = segue.destination as? UINavigationController else { return }
@@ -25,12 +19,11 @@ class MainViewController: UIViewController {
         settingsVC.delegate = self
         settingsVC.setColor = view.backgroundColor
     }
-
 }
 
 
 extension MainViewController: SettingsViewControllerDelegate {
-    func saveSettings(color: UIColor) {
+    func saveSettings(_ color: UIColor) {
         self.view.backgroundColor = color
     }
 }
